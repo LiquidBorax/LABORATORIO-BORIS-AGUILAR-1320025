@@ -1,0 +1,43 @@
+﻿// Librería:
+// Permite utilizar funcionalidades básicas del sistema,
+// como mostrar mensajes y leer datos del usuario.
+using System;
+// Espacio de nombres:
+// Se utiliza para organizar el código del programa.
+namespace Laboratorio3
+{
+    // Clase principal del programa
+    class Program
+    {
+        // Método principal:
+        // Punto de inicio de la ejecución del programa.
+        static void Main(string[] args)
+        {
+            // Write:
+            // Muestra un mensaje en pantalla SIN hacer salto de línea.
+            Console.Write("Este mensaje se muestra ");
+            // WriteLine:
+            // Muestra un mensaje y luego hace un salto de línea.
+            Console.WriteLine("en la misma línea.");
+            // El cursor pasa automáticamente a la siguiente línea
+            Console.WriteLine("Este mensaje aparece en una nueva línea.");
+            // Variable de tipo texto
+            string nombre;
+            // Solicitud de datos usando Write (el cursor se queda en la misma línea)
+            Console.Write("Ingrese su nombre: ");
+            // ReadLine:
+            // Lee una línea completa de texto ingresada por el usuario.
+            nombre = Console.ReadLine();
+            // Uso de la variable en una salida
+            Console.WriteLine("Hola " + nombre);
+
+            // Mensaje informativo
+            Console.WriteLine("Presione cualquier tecla para continuar...");
+            // ReadKey:
+            // Espera a que el usuario presione una tecla.
+            // No requiere presionar Enter.
+            Console.ReadKey();
+            // El programa finaliza después de presionar una tecla
+        }
+    }
+}

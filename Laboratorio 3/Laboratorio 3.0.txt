@@ -1,0 +1,26 @@
+﻿using System;
+namespace Laboratorio1 
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+        Console.WriteLine("Ingrese su nombre ");
+            string nombre;
+            nombre = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el nombre del curso");
+            string curso;
+            curso = Console.ReadLine();
+
+            Console.WriteLine("Hola " + nombre);
+            Console.ReadKey();
+            Console.WriteLine("Bienvenido al curso de " + curso);
+            Console.ReadKey();
+            Console.WriteLine("¿A las cuantas vueltas se hecha un perro?");
+            Console.WriteLine("Presione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+}
