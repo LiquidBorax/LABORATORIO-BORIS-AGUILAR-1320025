@@ -1,0 +1,263 @@
+﻿using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int opcion;
+
+        Console.WriteLine("=====================================");
+        Console.WriteLine("        LABORATORIO 5");
+        Console.WriteLine("=====================================");
+        Console.WriteLine("1 - Panel de Acceso");
+        Console.WriteLine("2 - Validador de PIN");
+        Console.WriteLine("3 - Activación de Cuenta");
+        Console.WriteLine("4 - Acceso a Sala de Examen");
+        Console.WriteLine("5 - BONUS San Valentín Hacker");
+        Console.WriteLine("=====================================");
+        Console.Write("Seleccione una opción: ");
+        opcion = int.Parse(Console.ReadLine());
+
+
+        if (opcion == 1)
+        {
+            int id, pin, token, modoSeguro;
+
+            Console.Write("ID: ");
+            id = int.Parse(Console.ReadLine());
+
+            Console.Write("PIN: ");
+            pin = int.Parse(Console.ReadLine());
+
+            Console.Write("Token: ");
+            token = int.Parse(Console.ReadLine());
+
+            Console.Write("Modo seguro (1=Si,0=No): ");
+            modoSeguro = int.Parse(Console.ReadLine());
+
+            if (id == 2026)
+                Console.WriteLine("Usuario reconocido.");
+            else
+                Console.WriteLine("Usuario no reconocido.");
+
+            if (pin == 1234)
+                Console.WriteLine("PIN correcto.");
+            else
+                Console.WriteLine("PIN incorrecto.");
+
+            if (token == 777)
+                Console.WriteLine("Token válido.");
+            else
+                Console.WriteLine("Token inválido.");
+
+            if (modoSeguro == 1)
+                Console.WriteLine("Modo seguro activado.");
+            else
+                Console.WriteLine("Modo seguro desactivado.");
+
+            if (id == 2026 && pin == 1234 && token == 777)
+                Console.WriteLine("Acceso total concedido.");
+            else
+                Console.WriteLine("Acceso denegado.");
+
+            if (modoSeguro == 1)
+            {
+                if (token >= 700)
+                    Console.WriteLine("Regla extra aprobada.");
+                else
+                    Console.WriteLine("Regla extra fallida.");
+            }
+        }
+
+        else if (opcion == 2)
+        {
+            int pin;
+
+            Console.Write("Ingrese PIN: ");
+            pin = int.Parse(Console.ReadLine());
+
+            if (pin >= 1000 && pin <= 9999)
+                Console.WriteLine("PIN de 4 dígitos: OK.");
+            else
+                Console.WriteLine("PIN inválido.");
+
+            if (pin % 2 == 0)
+                Console.WriteLine("PIN par.");
+            else
+                Console.WriteLine("PIN impar.");
+
+            if (pin % 5 == 0)
+                Console.WriteLine("Múltiplo de 5.");
+            else
+                Console.WriteLine("No es múltiplo de 5.");
+
+            if ((pin >= 1000 && pin <= 9999) && (pin % 2 == 0) && (pin % 5 != 0))
+                Console.WriteLine("PIN aceptado por política.");
+            else
+                Console.WriteLine("PIN rechazado por política.");
+        }
+
+
+        else if (opcion == 3)
+        {
+            int codigo, edad, terminos, dosFA, puntaje;
+
+            Console.Write("Código: ");
+            codigo = int.Parse(Console.ReadLine());
+
+            Console.Write("Edad: ");
+            edad = int.Parse(Console.ReadLine());
+
+            Console.Write("Aceptó términos (1/0): ");
+            terminos = int.Parse(Console.ReadLine());
+
+            Console.Write("Activó 2FA (1/0): ");
+            dosFA = int.Parse(Console.ReadLine());
+
+            Console.Write("Puntaje: ");
+            puntaje = int.Parse(Console.ReadLine());
+
+            if (codigo == 2026)
+                Console.WriteLine("Código correcto.");
+            else
+                Console.WriteLine("Código incorrecto.");
+
+            if (edad >= 18)
+                Console.WriteLine("Edad válida.");
+            else
+                Console.WriteLine("Edad no válida.");
+
+            if (terminos == 1)
+                Console.WriteLine("Términos aceptados.");
+            else
+                Console.WriteLine("Debe aceptar términos.");
+
+            if (dosFA == 1)
+                Console.WriteLine("2FA activado.");
+            else
+                Console.WriteLine("2FA no activado.");
+
+            if (puntaje >= 70)
+                Console.WriteLine("Puntaje suficiente.");
+            else
+                Console.WriteLine("Puntaje insuficiente.");
+
+            if (codigo == 2026 && edad >= 18 && terminos == 1 && dosFA == 1 && puntaje >= 70)
+                Console.WriteLine("Cuenta activada exitosamente.");
+            else
+                Console.WriteLine("Cuenta NO activada.");
+        }
+
+        else if (opcion == 4)
+        {
+            int nota, minutos, solvencia, identificacion, calculadora;
+
+            Console.Write("Nota previa: ");
+            nota = int.Parse(Console.ReadLine());
+
+            Console.Write("Minutos tarde: ");
+            minutos = int.Parse(Console.ReadLine());
+
+            Console.Write("Solvencia (1/0): ");
+            solvencia = int.Parse(Console.ReadLine());
+
+            Console.Write("Identificación (1/0): ");
+            identificacion = int.Parse(Console.ReadLine());
+
+            Console.Write("Calculadora (1/0): ");
+            calculadora = int.Parse(Console.ReadLine());
+
+            if (nota >= 61)
+                Console.WriteLine("Requisito académico aprobado.");
+            else
+                Console.WriteLine("Requisito académico NO aprobado.");
+
+            if (minutos <= 10)
+                Console.WriteLine("Hora válida.");
+            else
+                Console.WriteLine("Llegada tarde: fuera de tiempo.");
+
+            if (solvencia == 1)
+                Console.WriteLine("Solvencia validada.");
+            else
+                Console.WriteLine("Sin solvencia.");
+
+            if (identificacion == 1)
+                Console.WriteLine("Identificación validada.");
+            else
+                Console.WriteLine("Sin identificación.");
+
+            if (calculadora == 1)
+                Console.WriteLine("Calculadora permitida: OK.");
+            else
+                Console.WriteLine("Sin calculadora permitida.");
+
+            if (nota >= 61 && minutos <= 10 && solvencia == 1 && identificacion == 1)
+                Console.WriteLine("Acceso a sala de examen concedido.");
+            else
+                Console.WriteLine("Acceso denegado.");
+
+            if (minutos > 0 && minutos <= 10)
+                Console.WriteLine("Advertencia: llegó tarde pero puede ingresar.");
+        }
+
+
+        else if (opcion == 5)
+        {
+            string nombre;
+            int valentia, programacion, memes, interes, soltero;
+
+            Console.Write("Nombre de la persona: ");
+            nombre = Console.ReadLine();
+
+            Console.Write("Nivel de valentía (0-100): ");
+            valentia = int.Parse(Console.ReadLine());
+
+            Console.Write("¿Le gusta programación? (1/0): ");
+            programacion = int.Parse(Console.ReadLine());
+
+            Console.Write("¿Le gustan memes técnicos? (1/0): ");
+            memes = int.Parse(Console.ReadLine());
+
+            Console.Write("Nivel de interés (0-100): ");
+            interes = int.Parse(Console.ReadLine());
+
+            Console.Write("¿Está soltera/o? (1/0): ");
+            soltero = int.Parse(Console.ReadLine());
+
+            if (interes >= 70)
+                Console.WriteLine("Interés alto detectado.");
+            else
+                Console.WriteLine("Interés insuficiente.");
+
+            if (valentia >= 70)
+                Console.WriteLine("Valentía favorable.");
+            else
+                Console.WriteLine("Nivel de valentía bajo.");
+
+            if (soltero == 1)
+                Console.WriteLine("Estado sentimental favorable.");
+            else
+                Console.WriteLine("Estado sentimental comprometido.");
+
+            if (programacion == 1 && memes == 1)
+                Console.WriteLine("Compatibilidad geek detectada.");
+            else
+                Console.WriteLine("Compatibilidad parcial o inexistente.");
+
+            if (interes >= 70 && soltero == 1 && programacion == 1 && memes == 1 && valentia >= 70)
+                Console.WriteLine("DECLARACIÓN APROBADA.");
+            else if (interes >= 70 && soltero == 1 && programacion == 1 && memes == 1 && valentia < 70)
+                Console.WriteLine("No le tenga miedo al éxito que vida solo hay 1.");
+            else
+                Console.WriteLine(nombre + ", no te ama... por ahora.");
+        }
+
+        else
+        {
+            Console.WriteLine("Opción no válida.");
+        }
+
+        Console.ReadKey();
+    }
+}
