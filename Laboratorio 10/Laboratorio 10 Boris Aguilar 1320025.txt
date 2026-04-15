@@ -1,0 +1,174 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        int opcion = 0;
+
+        do
+        {
+            Console.WriteLine("\n--- MENU ---");
+            Console.WriteLine("1. Suma de digitos");
+            Console.WriteLine("2. Numero al cuadrado (referencia)");
+            Console.WriteLine("3. Descuento de producto");
+            Console.WriteLine("4. Energia del jugador");
+            Console.WriteLine("5. Salir");
+            Console.Write("Seleccione una opcion: ");
+            opcion = Convert.ToInt32(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    ejercicio1();
+                    break;
+                case 2:
+                    ejercicio2();
+                    break;
+                case 3:
+                    ejercicio3();
+                    break;
+                case 4:
+                    ejercicio4();
+                    break;
+            }
+
+        } while (opcion != 5);
+    }
+
+    // 1. Suma de digitos
+    static int sumaDigitos(int n)
+    {
+        int suma = 0;
+        while (n > 0)
+        {
+            suma = suma + (n % 10);
+            n = n / 10;
+        }
+        return suma;
+    }
+
+    static void ejercicio1()
+    {
+        Console.Write("Ingrese un numero: ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        int resultado = sumaDigitos(num);
+        Console.WriteLine("Resultado: " + resultado);
+    }
+
+    // 2. Por referencia
+    static string elevarCuadrado(ref int n)
+    {
+        n = n * n;
+        return "Operacion realizada";
+    }
+
+    static void ejercicio2()
+    {
+        Console.Write("Ingrese un numero: ");
+        int num = Convert.ToInt32(Console.ReadLine());
+        string mensaje = elevarCuadrado(ref num);
+        Console.WriteLine(mensaje);
+        Console.WriteLine("Nuevo valor: " + num);
+    }
+
+    // 3. Descuento
+    static double aplicarDescuento(double descuento, ref double precio)
+    {
+        double monto = precio * descuento;
+        precio = precio - monto;
+        return monto;
+    }
+
+    static void ejercicio3()
+    {
+        Console.Write("Ingrese precio: ");
+        double precio = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Ingrese descuento (ej 0.25): ");
+        double descuento = Convert.ToDouble(Console.ReadLine());
+
+        double monto = aplicarDescuento(descuento, ref precio);
+
+        Console.WriteLine("Precio final: " + precio);
+        Console.WriteLine("Descuento aplicado: " + monto);
+    }
+
+    // 4. Energia jugador
+    static int consumirEnergia(ref int energia)
+    {
+        energia = energia - 4;
+        if (energia < 0)
+        {
+            energia = 0;
+        }
+        return energia;
+    }
+
+    static int recargarEnergia(ref int energia)
+    {
+        energia = energia + 6;
+        if (energia > 20)
+        {
+            energia = 20;
+        }
+        return energia;
+    }
+
+    static string obtenerEstado(int energia)
+    {
+        if (energia >= 15)
+            return "Alta";
+        else if (energia >= 8)
+            return "Media";
+        else
+            return "Baja";
+    }
+
+    static string calcularRendimiento(int energia)
+    {
+        if (energia == 20)
+            return "S";
+        else if (energia >= 15)
+            return "A";
+        else if (energia >= 8)
+            return "B";
+        else
+            return "C";
+    }
+
+    static void ejercicio4()
+    {
+        int energia = 10;
+        int opcion = 0;
+
+        do
+        {
+            Console.WriteLine("\nEnergia actual: " + energia);
+            Console.WriteLine("1. Consumir energia");
+            Console.WriteLine("2. Recargar energia");
+            Console.WriteLine("3. Ver estado");
+            Console.WriteLine("4. Ver rendimiento");
+            Console.WriteLine("5. Salir");
+            Console.Write("Opcion: ");
+            opcion = Convert.ToInt32(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    consumirEnergia(ref energia);
+                    break;
+                case 2:
+                    recargarEnergia(ref energia);
+                    break;
+                case 3:
+                    Console.WriteLine("Estado: " + obtenerEstado(energia));
+                    break;
+                case 4:
+                    Console.WriteLine("Rendimiento: " + calcularRendimiento(energia));
+                    break;
+            }
+
+        } while (opcion != 5);
+    }
+}
