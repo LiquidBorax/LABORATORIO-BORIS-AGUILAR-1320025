@@ -1,0 +1,211 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Ingrese su nombre: ");
+        string nombre = Console.ReadLine();
+
+        Console.WriteLine("Bienvenido(a), " + nombre);
+
+        int opcion = 0;
+
+        do
+        {
+            Console.WriteLine("\n--- MENU ---");
+            Console.WriteLine("1. Validar contraseña");
+            Console.WriteLine("2. Invertir texto");
+            Console.WriteLine("3. Suma y promedio");
+            Console.WriteLine("4. Buscar numero");
+            Console.WriteLine("5. Nombres en arreglo");
+            Console.WriteLine("6. Salir");
+            Console.Write("Seleccione una opcion: ");
+            opcion = Convert.ToInt32(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    ejercicio1();
+                    break;
+                case 2:
+                    ejercicio2();
+                    break;
+                case 3:
+                    ejercicio3();
+                    break;
+                case 4:
+                    ejercicio4();
+                    break;
+                case 5:
+                    ejercicio5();
+                    break;
+            }
+
+        } while (opcion != 6);
+    }
+
+    // 1. Validar contraseña
+    static void ejercicio1()
+    {
+        Console.Write("Ingrese contraseña: ");
+        string pass = Console.ReadLine();
+
+        bool mayus = false;
+        bool numero = false;
+        bool especial = false;
+
+        for (int i = 0; i < pass.Length; i++)
+        {
+            char c = pass[i];
+
+            if (c >= 'A' && c <= 'Z')
+                mayus = true;
+
+            if (c >= '0' && c <= '9')
+                numero = true;
+
+            if (c == '@' || c == '#' || c == '$' || c == '%')
+                especial = true;
+        }
+
+        if (pass.Length >= 8 && mayus && numero && especial)
+        {
+            Console.WriteLine("Contraseña válida");
+        }
+        else
+        {
+            Console.Write("Inválida: ");
+
+            if (pass.Length < 8)
+                Console.Write("falta longitud, ");
+            if (!mayus)
+                Console.Write("falta mayúscula, ");
+            if (!numero)
+                Console.Write("falta número, ");
+            if (!especial)
+                Console.Write("falta carácter especial, ");
+
+            Console.WriteLine();
+        }
+    }
+
+    // 2. Invertir texto
+    static void ejercicio2()
+    {
+        Console.Write("Ingrese texto: ");
+        string texto = Console.ReadLine();
+
+        string invertido = "";
+
+        for (int i = texto.Length - 1; i >= 0; i--)
+        {
+            invertido = invertido + texto[i];
+        }
+
+        Console.WriteLine("Invertido: " + invertido);
+    }
+
+    // 3. Suma y promedio
+    static void ejercicio3()
+    {
+        Console.Write("Cuantos numeros desea ingresar: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        int[] numeros = new int[n];
+
+        int suma = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write("Numero " + (i + 1) + ": ");
+            numeros[i] = Convert.ToInt32(Console.ReadLine());
+            suma = suma + numeros[i];
+        }
+
+        double promedio = (double)suma / n;
+
+        int mayor = numeros[0];
+        int menor = numeros[0];
+
+        for (int i = 1; i < n; i++)
+        {
+            if (numeros[i] > mayor)
+                mayor = numeros[i];
+
+            if (numeros[i] < menor)
+                menor = numeros[i];
+        }
+
+        Console.WriteLine("Suma = " + suma);
+        Console.WriteLine("Promedio = " + promedio);
+        Console.WriteLine("Mayor = " + mayor);
+        Console.WriteLine("Menor = " + menor);
+    }
+
+    // 4. Buscar numero
+    static void ejercicio4()
+    {
+        int[] arreglo = new int[8];
+
+        for (int i = 0; i < 8; i++)
+        {
+            Console.Write("Numero " + (i + 1) + ": ");
+            arreglo[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        Console.Write("Numero a buscar: ");
+        int buscar = Convert.ToInt32(Console.ReadLine());
+
+        bool encontrado = false;
+
+        for (int i = 0; i < 8; i++)
+        {
+            if (arreglo[i] == buscar)
+            {
+                Console.WriteLine("El numero si existe en la posicion " + i);
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado)
+        {
+            Console.WriteLine("El numero no existe en el arreglo");
+        }
+    }
+
+    // 5. Nombres en arreglo
+    static void ejercicio5()
+    {
+        string[] nombres = new string[5];
+
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write("Nombre " + (i + 1) + ": ");
+            nombres[i] = Console.ReadLine();
+        }
+
+        Console.Write("Nombres ingresados: ");
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write(nombres[i] + " ");
+        }
+
+        int contador = 0;
+        string mayor = nombres[0];
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (nombres[i].Length > 5)
+                contador++;
+
+            if (nombres[i].Length > mayor.Length)
+                mayor = nombres[i];
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("Mas de 5 letras: " + contador);
+        Console.WriteLine("Nombre mas largo: " + mayor);
+    }
+}
