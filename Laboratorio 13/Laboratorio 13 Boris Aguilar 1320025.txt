@@ -1,0 +1,148 @@
+﻿using System;
+
+// Definición de las clases
+class Persona
+{
+    public string nombre;
+    public int edad;
+    public double altura;
+    public bool estudiante;
+}
+
+class Vehiculo
+{
+    public string marca;
+    public string modelo;
+    public int anio;
+    public string color;
+    public string placa;
+}
+
+class Producto
+{
+    public string codigo;
+    public string nombre;
+    public double precio;
+    public int stock;
+    public bool disponible;
+}
+
+class Mascota
+{
+    public string nombre;
+    public string especie;
+    public int edad;
+    public double peso;
+    public bool vacunado;
+}
+
+class Program
+{
+    static void Main()
+    {
+        int opcion = 0;
+
+        // Ciclo para repetir el menú hasta que elija salir
+        while (opcion != 5)
+        {
+            Console.WriteLine("\n=== MENÚ LABORATORIO 13 ===");
+            Console.WriteLine("1. Ejercicio 1 (Clase Persona)");
+            Console.WriteLine("2. Ejercicio 2 (Clase Vehiculo)");
+            Console.WriteLine("3. Ejercicio 3 (Clase Producto)");
+            Console.WriteLine("4. Ejercicio 4 (Clase Mascota)");
+            Console.WriteLine("5. Salir");
+            Console.Write("Elige una opción: ");
+
+            opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1)
+            {
+                // Ejercicio 1
+                Persona p1 = new Persona();
+                p1.nombre = "Boris Aguilar";
+                p1.edad = 19;
+                p1.altura = 1.85;
+                p1.estudiante = true;
+
+                Console.WriteLine("\n--- Datos de la Persona ---");
+                Console.WriteLine("Nombre: " + p1.nombre);
+                Console.WriteLine("Edad: " + p1.edad);
+                Console.WriteLine("Altura: " + p1.altura);
+                Console.WriteLine("Estudiante: " + p1.estudiante);
+            }
+            else if (opcion == 2)
+            {
+                // Ejercicio 2
+                Vehiculo v1 = new Vehiculo();
+                v1.marca = "Toyota";
+                v1.modelo = "Yaris";
+                v1.anio = 2018;
+                v1.color = "Plateado";
+                v1.placa = "P123ABC";
+
+                Console.WriteLine("\n--- Datos del Vehículo ---");
+                Console.WriteLine("Marca: " + v1.marca);
+                Console.WriteLine("Modelo: " + v1.modelo);
+                Console.WriteLine("Año: " + v1.anio);
+                Console.WriteLine("Color: " + v1.color);
+                Console.WriteLine("Placa: " + v1.placa);
+            }
+            else if (opcion == 3)
+            {
+                // Ejercicio 3
+                Producto prod1 = new Producto();
+                prod1.codigo = "PROD-001";
+                prod1.nombre = "Pizza grande";
+                prod1.precio = 125.50;
+                prod1.stock = 10;
+                prod1.disponible = true;
+
+                Producto prod2 = new Producto();
+                prod2.codigo = "PROD-002";
+                prod2.nombre = "Helado";
+                prod2.precio = 35.00;
+                prod2.stock = 15;
+                prod2.disponible = true;
+
+                Console.WriteLine("\n--- Datos del Producto 1 ---");
+                Console.WriteLine("Código: " + prod1.codigo);
+                Console.WriteLine("Nombre: " + prod1.nombre);
+                Console.WriteLine("Precio: Q" + prod1.precio);
+                Console.WriteLine("Stock: " + prod1.stock);
+                Console.WriteLine("Disponible: " + prod1.disponible);
+
+                Console.WriteLine("\n--- Datos del Producto 2 ---");
+                Console.WriteLine("Código: " + prod2.codigo);
+                Console.WriteLine("Nombre: " + prod2.nombre);
+                Console.WriteLine("Precio: Q" + prod2.precio);
+                Console.WriteLine("Stock: " + prod2.stock);
+                Console.WriteLine("Disponible: " + prod2.disponible);
+            }
+            else if (opcion == 4)
+            {
+                // Ejercicio 4
+                Mascota m1 = new Mascota();
+                m1.nombre = "Roger";
+                m1.especie = "Gato";
+                m1.edad = 3;
+                m1.peso = 4.2;
+                m1.vacunado = true;
+
+                Console.WriteLine("\n--- Datos de la Mascota ---");
+                Console.WriteLine("Nombre: " + m1.nombre);
+                Console.WriteLine("Especie: " + m1.especie);
+                Console.WriteLine("Edad: " + m1.edad + " años");
+                Console.WriteLine("Peso: " + m1.peso + " kg");
+                Console.WriteLine("Vacunado: " + m1.vacunado);
+            }
+            else if (opcion == 5)
+            {
+                Console.WriteLine("\nSaliendo del programa...");
+            }
+            else
+            {
+                Console.WriteLine("\nOpción no válida. Intenta de nuevo.");
+            }
+        }
+    }
+}
