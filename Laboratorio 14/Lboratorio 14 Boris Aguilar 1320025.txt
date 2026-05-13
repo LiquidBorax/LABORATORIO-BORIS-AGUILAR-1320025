@@ -1,0 +1,215 @@
+﻿using System;
+
+class Libro
+{
+    public string titulo;
+    public string autor;
+    public int anioPublicacion;
+    public bool disponible;
+
+    public Libro(string t, string a, int anio, bool disp)
+    {
+        titulo = t;
+        autor = a;
+        anioPublicacion = anio;
+        disponible = disp;
+    }
+
+    public void mostrarInformacion()
+    {
+        Console.WriteLine("Título: " + titulo + ", Autor: " + autor + ", Año: " + anioPublicacion + ", Disponible: " + disponible);
+    }
+
+    public void prestarLibro()
+    {
+        if (disponible == true)
+        {
+            disponible = false;
+            Console.WriteLine("El libro '" + titulo + "' ha sido prestado.");
+        }
+        else
+        {
+            Console.WriteLine("El libro '" + titulo + "' no está disponible.");
+        }
+    }
+
+    public void devolverLibro()
+    {
+        disponible = true;
+        Console.WriteLine("El libro '" + titulo + "' ha sido devuelto.");
+    }
+}
+
+class Mascota
+{
+    public string nombre;
+    public string especie;
+    public int edad;
+    public bool vacunado;
+
+    public Mascota(string n, string e, int ed, bool vac)
+    {
+        nombre = n;
+        especie = e;
+        edad = ed;
+        vacunado = vac;
+    }
+
+    public void mostrarInformacion()
+    {
+        Console.WriteLine("Nombre: " + nombre + ", Especie: " + especie + ", Edad: " + edad + " años, Vacunado: " + vacunado);
+    }
+
+    public void vacunar()
+    {
+        vacunado = true;
+        Console.WriteLine(nombre + " ha sido vacunado.");
+    }
+
+    public void cumplirAnios()
+    {
+        edad = edad + 1;
+        Console.WriteLine(nombre + " cumplió años. Ahora tiene " + edad + " años.");
+    }
+}
+
+class Estudiante
+{
+    public string nombre;
+    public int edad;
+    public string grado;
+    public double[] notas;
+
+    public Estudiante(string n, int e, string g, double[] nts)
+    {
+        nombre = n;
+        edad = e;
+        grado = g;
+        notas = nts;
+    }
+
+    public double calcularPromedio()
+    {
+        double suma = 0;
+        for (int i = 0; i < notas.Length; i++)
+        {
+            suma = suma + notas[i];
+        }
+        return suma / notas.Length;
+    }
+
+    public void mostrarInformacion()
+    {
+        Console.WriteLine("Nombre: " + nombre + ", Edad: " + edad + ", Grado: " + grado + ", Promedio: " + calcularPromedio());
+    }
+
+    public void aprobar()
+    {
+        if (calcularPromedio() >= 65)
+        {
+            Console.WriteLine("El estudiante " + nombre + " aprobó.");
+        }
+        else
+        {
+            Console.WriteLine("El estudiante " + nombre + " reprobó.");
+        }
+    }
+
+    public void agregarNota(double nuevaNota)
+    {
+        double[] nuevasNotas = new double[notas.Length + 1];
+
+        for (int i = 0; i < notas.Length; i++)
+        {
+            nuevasNotas[i] = notas[i];
+        }
+
+        nuevasNotas[notas.Length] = nuevaNota;
+
+        notas = nuevasNotas;
+        Console.WriteLine("Nota " + nuevaNota + " agregada correctamente a " + nombre + ".");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        int opcion = 0;
+
+        while (opcion != 4)
+        {
+            Console.WriteLine("\n=== MENÚ LABORATORIO 14 ===");
+            Console.WriteLine("1. Ejercicio 1 (Libros)");
+            Console.WriteLine("2. Ejercicio 2 (Mascotas)");
+            Console.WriteLine("3. Ejercicio 3 (Estudiantes)");
+            Console.WriteLine("4. Salir");
+            Console.Write("Elige una opción: ");
+
+            opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1)
+            {
+                Libro lib1 = new Libro("Jurassic Park", "Michael Crichton", 1990, true);
+                Libro lib2 = new Libro("El señor presidente", "Miguel Ángel Asturias", 1946, true);
+
+                Console.WriteLine("\n--- Información Inicial ---");
+                lib1.mostrarInformacion();
+                lib2.mostrarInformacion();
+
+                Console.WriteLine("\n--- Probando préstamos y devoluciones ---");
+                lib1.prestarLibro();
+                lib1.mostrarInformacion();
+
+                lib1.devolverLibro();
+                lib1.mostrarInformacion();
+            }
+            else if (opcion == 2)
+            {
+                Mascota m1 = new Mascota("Roger", "Gato", 4, false);
+                Mascota m2 = new Mascota("Sheldon", "Perro", 5, true);
+
+                Console.WriteLine("\n--- Información Inicial ---");
+                m1.mostrarInformacion();
+                m2.mostrarInformacion();
+
+                Console.WriteLine("\n--- Vacunando ---");
+                m1.vacunar();
+                m1.mostrarInformacion();
+
+                Console.WriteLine("\n--- Cumpliendo años ---");
+                m2.cumplirAnios();
+                m2.mostrarInformacion();
+            }
+            else if (opcion == 3)
+            {
+                double[] notasEst1 = { 80, 50, 70 };
+                Estudiante est1 = new Estudiante("Boris", 19, "Ingeniería", notasEst1);
+
+                double[] notasEst2 = { 40, 95, 60 };
+                Estudiante est2 = new Estudiante("Kevin", 20, "Ingeniería", notasEst2);
+
+                Console.WriteLine("\n--- Información Inicial y Promedios ---");
+                est1.mostrarInformacion();
+                est2.mostrarInformacion();
+
+                Console.WriteLine("\n--- ¿Aprobaron? ---");
+                est1.aprobar();
+                est2.aprobar();
+
+                Console.WriteLine("\n--- Agregando nota para recuperar ---");
+                est2.agregarNota(95.0);
+                est2.mostrarInformacion();
+                est2.aprobar();
+            }
+            else if (opcion == 4)
+            {
+                Console.WriteLine("\nSaliendo del programa...");
+            }
+            else
+            {
+                Console.WriteLine("\nOpción no válida. Intenta de nuevo.");
+            }
+        }
+    }
+}
