@@ -1,0 +1,257 @@
+﻿using System;
+
+class Parcela
+{
+    public string tipo_planta = "Vacia";
+    public int mesesCreciendo = 0;
+    public bool regada = false;
+}
+
+class Program
+{
+    static void Main()
+    {
+        // variables de inicio
+        double pistoActual = 0;
+        int mesesFaltantes = 0;
+        int numEmpleados = 0;
+        double sueldo = 0;
+        int filas = 0;
+        int columnas = 0;
+
+        // variables para el reporte final
+        double totalIngresos = 0;
+        double totalEgresos = 0;
+        int totalRiegos = 0;
+        int cosechasPapa = 0;
+        int cosechasTomate = 0;
+        int cosechasFresa = 0;
+
+        Console.WriteLine("=== BIENVENIDO A LA GRANJA DE DON DIMADON DUEÑO DEL DOMODIN DEL DIMADON ===");
+
+        // validar datos iniciales
+        Console.Write("Ingresa cuanto money quieres al inicio: ");
+        while (!double.TryParse(Console.ReadLine(), out pistoActual) || pistoActual < 0)
+        {
+            Console.Write("Tas bobo? ingresa un valor adecuado: ");
+        }
+
+        Console.Write("Cuantos meses va a durar tu castigo? ");
+        while (!int.TryParse(Console.ReadLine(), out mesesFaltantes) || mesesFaltantes <= 0)
+        {
+            Console.Write("Tas bobo? ingresa un valor adecuado: ");
+        }
+
+        Console.Write("A cuantas personas les piensas pagar el sueldo minimo sin horas extras, vacaciones y dias de descanso? ");
+        while (!int.TryParse(Console.ReadLine(), out numEmpleados) || numEmpleados < 0)
+        {
+            Console.Write("Tas bobo? ingresa un valor adecuado");
+        }
+
+        Console.Write("Cual es el sueldo por esclavo? ");
+        while (!double.TryParse(Console.ReadLine(), out sueldo) || sueldo < 0)
+        {
+            Console.Write("Tampoco seas tan malo, pagales un poco mas: ");
+        }
+
+        Console.Write("Cantidad de filas de tu ranchito: ");
+        while (!int.TryParse(Console.ReadLine(), out filas) || filas <= 0)
+        {
+            Console.Write("Tas bobo? ingresa un valor adecuado: ");
+        }
+
+        Console.Write("Cantidad de columnas de tu ranchito: ");
+        while (!int.TryParse(Console.ReadLine(), out columnas) || columnas <= 0)
+        {
+            Console.Write("Tas bobo? ingresa un valor adecuado: ");
+        }
+
+        // armar matriz
+        Parcela[,] matriz = new Parcela[filas, columnas];
+        for (int i = 0; i < filas; i++)
+        {
+            for (int j = 0; j < columnas; j++)
+            {
+                matriz[i, j] = new Parcela();
+            }
+        }
+
+        int opcion = 0;
+
+        // ciclo principal
+        while (pistoActual > 0 && mesesFaltantes > 0)
+        {
+            Console.WriteLine("\n--- MENU ---");
+            Console.WriteLine("1. Sembrar");
+            Console.WriteLine("2. Regarla");
+            Console.WriteLine("3. Consultar");
+            Console.WriteLine("4. Viaje en el tiempo");
+            Console.WriteLine("5. Salir");
+            Console.Write("Elige una opcion: ");
+
+            while (!int.TryParse(Console.ReadLine(), out opcion) || opcion < 1 || opcion > 5)
+            {
+                Console.Write("Un trabajo tenias, hazlo bien esta vez: ");
+            }
+
+            if (opcion == 1)
+            {
+                // sembrar
+                int f = -1, c = -1;
+                Console.Write("Fila (0 a " + (filas - 1) + "): ");
+                while (!int.TryParse(Console.ReadLine(), out f) || f < 0 || f >= filas)
+                {
+                    Console.Write("Te fuiste pero lejos, intenta de nuevo: ");
+                }
+
+                Console.Write("Columna (0 a " + (columnas - 1) + "): ");
+                while (!int.TryParse(Console.ReadLine(), out c) || c < 0 || c >= columnas)
+                {
+                    Console.Write("No mijo, no das ni una, intenta de nuevo: ");
+                }
+
+                if (matriz[f, c].tipo_planta == "Vacia")
+                {
+                    int tipo = 0;
+                    Console.WriteLine("Que se le antoja plantar al patrón? 1.Papa 2.Tomate 3.Fresa");
+                    while (!int.TryParse(Console.ReadLine(), out tipo) || tipo < 1 || tipo > 3)
+                    {
+                        Console.Write("Elige 1, 2 o 3: ");
+                    }
+
+                    if (tipo == 1) matriz[f, c].tipo_planta = "Papa";
+                    else if (tipo == 2) matriz[f, c].tipo_planta = "Tomate";
+                    else if (tipo == 3) matriz[f, c].tipo_planta = "Fresa";
+
+                    Console.WriteLine("Sembrado con exito!");
+                }
+                else
+                {
+                    Console.WriteLine("Error: Aqui tu ya habias ponido cosas.");
+                }
+            }
+            else if (opcion == 2)
+            {
+                // regar
+                int f = -1, c = -1;
+                Console.Write("Fila para regarla: ");
+                while (!int.TryParse(Console.ReadLine(), out f) || f < 0 || f >= filas) Console.Write("Fila no valida: ");
+                Console.Write("Columna para regarla: ");
+                while (!int.TryParse(Console.ReadLine(), out c) || c < 0 || c >= columnas) Console.Write("Columna no valida: ");
+
+                if (matriz[f, c].tipo_planta != "Vacia" && matriz[f, c].regada == false)
+                {
+                    if (pistoActual >= 40)
+                    {
+                        pistoActual = pistoActual - 40;
+                        totalEgresos = totalEgresos + 40;
+                        matriz[f, c].regada = true;
+                        totalRiegos++;
+                        Console.WriteLine("Felicidades, ya la regaste!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ni para regarla sirves ,no tienes Q40 para regar.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No la regaste (no hay planta o ya la regaste).");
+                }
+            }
+            else if (opcion == 3)
+            {
+                // consultar
+                int f = -1, c = -1;
+                Console.Write("Fila a consultar: ");
+                while (!int.TryParse(Console.ReadLine(), out f) || f < 0 || f >= filas) Console.Write("Inválido: ");
+                Console.Write("Columna a consultar: ");
+                while (!int.TryParse(Console.ReadLine(), out c) || c < 0 || c >= columnas) Console.Write("Inválido: ");
+
+                Console.WriteLine("--- ESTADO DE PARCELA ---");
+                Console.WriteLine("Planta: " + matriz[f, c].tipo_planta);
+                Console.WriteLine("Meses de crecimiento: " + matriz[f, c].mesesCreciendo);
+                Console.WriteLine("Regada este mes: " + matriz[f, c].regada);
+            }
+            else if (opcion == 4)
+            {
+                // avanzar mes y pagar
+                double pagoPlanilla = numEmpleados * sueldo;
+                pistoActual = pistoActual - pagoPlanilla;
+                totalEgresos = totalEgresos + pagoPlanilla;
+                mesesFaltantes = mesesFaltantes - 1;
+
+                // crecer plantas y cosechar
+                for (int i = 0; i < filas; i++)
+                {
+                    for (int j = 0; j < columnas; j++)
+                    {
+                        if (matriz[i, j].tipo_planta != "Vacia")
+                        {
+
+                            // crecimiento por riego
+                            if (matriz[i, j].regada == true)
+                            {
+                                matriz[i, j].mesesCreciendo += 2;
+                            }
+                            else
+                            {
+                                matriz[i, j].mesesCreciendo += 1;
+                            }
+                            matriz[i, j].regada = false; // reiniciar riego
+
+                            // revisar si ya se cosecha
+                            bool tocaCosechar = false;
+                            double ganancia = 0;
+
+                            if (matriz[i, j].tipo_planta == "Papa" && matriz[i, j].mesesCreciendo >= 2)
+                            {
+                                tocaCosechar = true;
+                                ganancia = 450;
+                                cosechasPapa++;
+                            }
+                            else if (matriz[i, j].tipo_planta == "Tomate" && matriz[i, j].mesesCreciendo >= 3)
+                            {
+                                tocaCosechar = true;
+                                ganancia = 650;
+                                cosechasTomate++;
+                            }
+                            else if (matriz[i, j].tipo_planta == "Fresa" && matriz[i, j].mesesCreciendo >= 4)
+                            {
+                                tocaCosechar = true;
+                                ganancia = 900;
+                                cosechasFresa++;
+                            }
+
+                            if (tocaCosechar == true)
+                            {
+                                pistoActual = pistoActual + ganancia;
+                                totalIngresos = totalIngresos + ganancia;
+                                Console.WriteLine("Cosechaste " + matriz[i, j].tipo_planta + " en la fila " + i + ", columna " + j);
+
+                                // reiniciar la parcela
+                                matriz[i, j].tipo_planta = "Vacia";
+                                matriz[i, j].mesesCreciendo = 0;
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine("Mes finalizado. Te voy a quitar Q" + pagoPlanilla + " de planilla.");
+            }
+            else if (opcion == 5)
+            {
+                mesesFaltantes = 0; // esto fuerza a que salga del while
+            }
+        }
+
+        // imprimir todo el reporte
+        Console.WriteLine("\n--- REPORTE FINAL DEL JUEGO ---");
+        Console.WriteLine("Dinero final: Q" + pistoActual);
+        Console.WriteLine("Total platica por cosechas: Q" + totalIngresos);
+        Console.WriteLine("Total Egresos (Que tanto la regaste y Esclavos): Q" + totalEgresos);
+        Console.WriteLine("Cantidad total de riegos: " + totalRiegos);
+        Console.WriteLine("Papas cosechadas: " + cosechasPapa);
+        Console.WriteLine("Tomates cosechados: " + cosechasTomate);
+        Console.WriteLine("Fresas cosechadas: " + cosechasFresa);
+    }
+}
