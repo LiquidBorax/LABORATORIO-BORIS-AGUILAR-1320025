@@ -1,6 +1,0 @@
-﻿Compilación iniciada a las 06:38...
-1>------ Operación Compilar iniciada: Proyecto: Laboratorio 15, Boris Aguilar 1320025, configuración: Debug Any CPU ------
-1>  Omitiendo analizadores para acelerar la compilación. Puede ejecutar los comandos "Build" o "Rebuild" para ejecutar los analizadores.
-1>  Laboratorio 15, Boris Aguilar 1320025 -> C:\Users\hpvic\Documents\GitHub\LABORATORIO-BORIS-AGUILAR-1320025\Laboratorio 15, Boris Aguilar 1320025\Laboratorio 15, Boris Aguilar 1320025\bin\Debug\net10.0\Laboratorio 15, Boris Aguilar 1320025.dll
-========== Compilación: 1 correcto, 0 erróneo, 0 actualizado, 0 omitido ==========
-========== Compilar completado a las 06:38 y tardó 04.693 segundos ==========
